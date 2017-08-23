@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    maven { url "$rootDir/touch-sdk-android" }
+}
+
+def gitCommitCount = 100 + Integer.parseInt(
+        'git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.clickatell.chatsample.touchsample"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode gitCommitCount
+        versionName "1.0.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "Clickatell-TouchSample-$versionName")
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
+    }
+}
+
+ext.playServicesVersion = '10.2.0'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile('com.clickatell.chatsecure.androidsdk:touch-android-sdk:+')
+    compile "com.android.support:multidex:1.0.1"
+    compile "com.google.firebase:firebase-core:${playServicesVersion}"
+    compile "com.google.firebase:firebase-messaging:${playServicesVersion}"
+
+    testCompile 'junit:junit:4.12'
+}
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TouchSample</string>
+    <string name="clickatekll_token">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZjJiYzkwZjE3NGE0YWI5YWZiMjYwM2U0ZWYzOGExYiIsInR5cGUiOiJSRUZSRVNIIiwiaWF0IjoxNDk0NDk1OTAwfQ.LL09EwR20ECQ4aDH1cK1dA2kCR4OTgAM9ARkf8DH0IU</string>
+</resources>
