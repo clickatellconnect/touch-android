@@ -56,7 +56,7 @@ public class App extends Application {
 ```
 ## Public API
 
-1. To fetch all tenants available for client use TouchSdk.service().apiService().tenants():
+1. To fetch all tenants available for client use TouchSdk.getInstance().service().tenants():
 ```java
 ApiCall<List<Tenant>> apiCall = TouchSdk.getInstance().service().tenants();
 apiCall.enqueue(new Callback<List<Tenant>>() {
@@ -78,7 +78,7 @@ apiCall.cancel();
 ChatActivity.startActivity(this/*activity*/, tenant);
 ```
 3. Touch SDK includes possibility to view/clear chats started by the client, in order to do
-that, use PersistenceService from TouchSdk.service().persistenceService()
+that, use PersistenceService from TouchSdk.getInstance().persistenceService()
 ```java
 PersistenceService persistenceService = TouchSdk.getInstance().persistenceService();
 List<ChatModel> availableChats = persistenceService.availableChats();
