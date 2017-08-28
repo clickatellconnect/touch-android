@@ -11,19 +11,14 @@ To use Touch SDK in a project, add it as a build dependency and import it.
 4. Open your_app | build.gradle
 5. Add maven repo url "$rootDir/touch-sdk-android" to Module-level /app/build.gradle before dependencies:
 > apply plugin: 'com.android.application'
-
 > repositories {
-
 >   maven { url "$rootDir/touch-sdk-android" }
-
 > }
 
 > android {...}
 6. Add the compile dependency with the latest version of the Touch SDK in the build.gradle file, like that:
 > dependencies {
-
 >   compile('com.clickatell.chatsecure.androidsdk:touch-android-sdk:+')
-
 > }
 
 7. React-native requires to add ndk { abiFilters "armeabi-v7a", "x86" } to app’s defaultConfig, like that:
