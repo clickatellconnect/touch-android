@@ -5,6 +5,7 @@ import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.clickatell.chatsecure.androidsdk.sdk2.TouchSdk;
+import com.clickatell.chatsecure.androidsdk.utils.Configuration;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
@@ -19,8 +20,9 @@ public class App extends Application {
         super.onCreate();
         MultiDex.install(this);
         TouchSdk.LOG = true;
-        TouchSdk.install(this, getString(R.string.clickatekll_token));
-
+        Configuration configuration = new Configuration(this);
+        configuration.selectedEnvironment().setToken(getString(R.string.clickatekll_token));
+        TouchSdk.getInstance().install(this, configuration);
         String token = null;
         token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "private token - " + token);

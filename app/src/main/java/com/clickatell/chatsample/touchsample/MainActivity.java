@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void fetchTenants() {
-        ApiCall<List<Tenant>> apiCall = TouchSdk.service().apiService().tenants();
+        ApiCall<List<Tenant>> apiCall = TouchSdk.getInstance().service().tenants();
         apiCall.enqueue(new Callback<List<Tenant>>() {
             @Override
             public void onSuccess(@NonNull List<Tenant> tenants) {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void clearHistory() {
-        PersistenceService persistenceService = TouchSdk.service().persistenceService();
+        PersistenceService persistenceService = TouchSdk.getInstance().persistenceService();
         List<ChatModel> availableChats = persistenceService.availableChats();
         boolean isSuccessful = persistenceService.clearAllChats();
     }

@@ -3,7 +3,7 @@ package com.clickatell.chatsample.touchsample;
 import android.util.Log;
 
 import com.clickatell.chatsecure.androidsdk.sdk2.TouchSdk;
-import com.clickatell.chatsecure.androidsdk.utils.Maps;
+import com.clickatell.chatsecure.androidsdk.utils.MapUtils;
 import com.clickatell.chatsecure.androidsdk.utils.PushNotificationHelper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -26,7 +26,7 @@ public class AppPushService extends FirebaseMessagingService {
         }
 
         if (TouchSdk.LOG) {
-            Log.d(TAG, "onMessageReceived: " + Maps.logMap(notificationData));
+            Log.d(TAG, "onMessageReceived: " + MapUtils.logMap(notificationData));
         }
 
         if (PushNotificationHelper.isClickatellPush(notificationData)){
