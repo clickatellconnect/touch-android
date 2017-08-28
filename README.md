@@ -51,7 +51,7 @@ public class App extends Application {
       MultiDex.install(this);
       TouchSdk.install(this, getString(R.string.clickatell_token));
 }
-
+```
 ## Public API
 
 1. To fetch all tenants available for client use TouchSdk.service().apiService().tenants():
