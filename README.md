@@ -49,14 +49,16 @@ public class App extends Application {
   public void onCreate() {
       super.onCreate();
       MultiDex.install(this);
-      TouchSdk.install(this, getString(R.string.clickatell_token));
+      Configuration configuration = new Configuration(this);
+      configuration.selectedEnvironment().setToken(getString(R.string.clickatekll_token));
+      TouchSdk.getInstance().install(this, configuration);
 }
 ```
 ## Public API
 
 1. To fetch all tenants available for client use TouchSdk.service().apiService().tenants():
 ```java
-ApiCall<List<Tenant>> apiCall = TouchSdk.service().apiService().tenants();
+ApiCall<List<Tenant>> apiCall = TouchSdk.getInstance().service().tenants();
 apiCall.enqueue(new Callback<List<Tenant>>() {
   @Override
   public void onSuccess(@NonNull List<Tenant> tenants) {
@@ -78,7 +80,7 @@ ChatActivity.startActivity(this/*activity*/, tenant);
 3. Touch SDK includes possibility to view/clear chats started by the client, in order to do
 that, use PersistenceService from TouchSdk.service().persistenceService()
 ```java
-PersistenceService persistenceService = TouchSdk.service().persistenceService();
+PersistenceService persistenceService = TouchSdk.getInstance().persistenceService();
 List<ChatModel> availableChats = persistenceService.availableChats();
 boolean isSuccessful = persistenceService.clearAllChats();
 ```
